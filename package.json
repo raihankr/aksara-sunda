@@ -1,0 +1,19 @@
+{
+  "name": "web-aksara-sunda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raihankr/web-aksara-sunda.git"
+  },
+  "author": "Raihan Khairul Rochman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raihankr/web-aksara-sunda/issues"
+  },
+  "homepage": "https://github.com/raihankr/web-aksara-sunda#readme"
+}
