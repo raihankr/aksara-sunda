@@ -1,5 +1,5 @@
 {
-  "name": "web-aksara-sunda",
+  "name": "aksara-sunda",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,12 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raihankr/web-aksara-sunda.git"
+    "url": "git+https://github.com/raihankr/aksara-sunda.git"
   },
   "author": "Raihan Khairul Rochman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/raihankr/web-aksara-sunda/issues"
+    "url": "https://github.com/raihankr/aksara-sunda/issues"
   },
-  "homepage": "https://github.com/raihankr/web-aksara-sunda#readme"
+  "homepage": "https://github.com/raihankr/aksara-sunda#readme",
+  "dependencies": {
+    "tailwindcss": "^3.3.5"
+  }
 }
