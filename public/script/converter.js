@@ -126,14 +126,50 @@ let sundanese = {
 };
 
 /*
- * Regular Expression used to divide Latin text into
+ * Regular Expression used to parse or divide Latin text into
  * parts of Sundanese character, generally like dividing
  * every syllable in the text.
  */
-const charDivider = /(([^aiueéo\s\d\W])([rly])?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo]))(([rh]|ng)(?![aiueéo]))?/gi;
+const parser = /(([^aiueéo\s\d\W])([rly])?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo])|(\d+)|(\W+))(([rh]|ng)(?![aiueéo]))?/gi;
 
 function latinToSundanese(text) {
-    let result;
+    text = text.toLowerCase();
+    let result = '';
+    let parsed = text.matchAll(parser);
+    
+    let aParsed = parsed.next();
+    while (!aParsed.done) {
+        if (aParsed.value[0].match(/[a-zé]/i)) {
+
+            if (aParsed.value[1]) {
+                result += sundanese.aksara.ngalagena[aParsed.value[1]];
+
+                if (aParsed.value[0].length === 1) {
+                    result += sundanese.rarangken.akhir['/'].char;
+                    continue;
+                }
+
+                if (aParsed.value[2] && !(aParsed.value[2] == 'a'))
+                    result += sundanese.rarangken.vokal[aParsed.value[2]].char;
+                
+                if (aParsed.value[6])
+                    result += sundanese.rarangken.sisip[aParsed.value[6]].char;
+
+            } else result += sundanese.aksara.swara[aParsed.value[5]];
+
+            if (aParsed.value[9])
+                result += sundanese.rarangken.akhir[aParsed.value[9]].char;
+
+        } else if (aParsed.value[0].match(/\d/)) {
+            result += '|';
+
+
+
+            result += '|';
+        } else result += aParsed.value[0];
+
+        aParsed = parsed.next();
+    }
 
     return result;
 }
@@ -143,3 +179,5 @@ function sundaneseToLatin(text) {
 
     return result 
 }
+
+console.log(latinToSundanese('a'));
