@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksara Sunda - Konverter</title>
+    <meta name="description" content="Konverter Aksara Sunda. Ubah aksara Latin ke aksara Sunda atau aksara Sunda ke aksara Latin">
+    <link rel="shortcut icon" href="/image/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/style/output.css">
+    <link rel="stylesheet" href="/style/assets.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body class="pt-24 px-4">
+    <header class="w-full h-20 py-3 border-b border-black text-center text-2xl fixed top-0 left-0">
+        <a href="/" class="my-auto font-bold">
+            Aksara Sunda <br>
+            <span class="text-base font-normal">&#x1b83;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b; &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
+        </a>
+    </header>
+    <p class="font-bold text-3xl mb-3">Konverter</p>
+    <p class="mb-4">Konversi teks beraksara Latin ke aksara Sunda dan sebaliknya.</p>
+    <textarea name="input" id="input" class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
+    <p id="output" class="w-full h-fit text-2xl"></p>
+
+    <script src="/script/global.js"></script>
+    <script src="/script/converter.js"></script>
+    <script>
+        $('#input').on('input', () => {
+            let text = $('#input').val();
+
+            let output =  (''.match(/[\u1b80-\u1bbf]/i)) ? sundaneseToLatin(text) : latinToSundanese(text);
+            $('#output').html(output);
+        });
+    </script>
+</body>
+</html>
