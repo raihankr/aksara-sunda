@@ -152,15 +152,14 @@ function latinToSundanese(text) {
                     continue;
                 }
 
-                if (aParsed.value[4])
-                    if (aParsed.value[4] == 'a') continue;
-                    else result += sundanese.rarangken.vokal[aParsed.value[4]].char + ';';
-                
                 if (aParsed.value[3])
                     result += sundanese.rarangken.sisip[aParsed.value[3]].char + ';';
 
-            } else result += sundanese.aksara.swara[aParsed.value[5]] + ';';
+                if (aParsed.value[4])
+                    if (aParsed.value[4] == 'a') null;
+                    else result += sundanese.rarangken.vokal[aParsed.value[4]].char + ';';
 
+            } else result += sundanese.aksara.swara[aParsed.value[5]] + ';';
 
             if (aParsed.value[9])
                 result += sundanese.rarangken.akhir[aParsed.value[9]].char + ';';
@@ -182,10 +181,4 @@ function sundaneseToLatin(text) {
     let result;
 
     return result;
-}
-
-module.exports = {
-    parser,
-    latinToSundanese,
-    sundanese
 }
