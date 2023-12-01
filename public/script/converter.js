@@ -141,33 +141,35 @@ function latinToSundanese(text) {
     while (true) {
         aParsed = parsed.next();
         if (aParsed.done) break;
-      
+
         if (aParsed.value[0].match(/[a-zé]/i)) {
 
             if (aParsed.value[2]) {
-                result += sundanese.aksara.ngalagena[aParsed.value[1]];
+                result += sundanese.aksara.ngalagena[aParsed.value[2]] + ';';
 
                 if (aParsed.value[0].length === 1) {
-                    result += sundanese.rarangken.akhir['/'].char;
+                    result += sundanese.rarangken.akhir['/'].char + ';';
                     continue;
                 }
 
-                if (aParsed.value[4] && !(aParsed.value[2] == 'a'))
-                    result += sundanese.rarangken.vokal[aParsed.value[2]].char;
+                if (aParsed.value[4])
+                    if (aParsed.value[4] == 'a') continue;
+                    else result += sundanese.rarangken.vokal[aParsed.value[4]].char + ';';
                 
                 if (aParsed.value[3])
-                    result += sundanese.rarangken.sisip[aParsed.value[6]].char;
+                    result += sundanese.rarangken.sisip[aParsed.value[3]].char + ';';
 
-            } else result += sundanese.aksara.swara[aParsed.value[5]];
+            } else result += sundanese.aksara.swara[aParsed.value[5]] + ';';
+
 
             if (aParsed.value[9])
-                result += sundanese.rarangken.akhir[aParsed.value[9]].char;
+                result += sundanese.rarangken.akhir[aParsed.value[9]].char + ';';
 
         } else if (aParsed.value[0].match(/\d/)) {
             result += '|';
 
             for (digit of aParsed.value[0])
-                result += sundanese.angka[digit];
+                result += sundanese.angka[digit] + ';';
 
             result += '|';
         } else result += aParsed.value[0];
@@ -180,4 +182,10 @@ function sundaneseToLatin(text) {
     let result;
 
     return result;
+}
+
+module.exports = {
+    parser,
+    latinToSundanese,
+    sundanese
 }
