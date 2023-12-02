@@ -14,7 +14,7 @@
     <header class="w-full h-20 py-3 border-b border-black text-center text-2xl fixed top-0 left-0">
         <a href="/" class="my-auto font-bold">
             Aksara Sunda <br>
-            <span class="text-base font-normal">&#x1b83;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b; &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
+            <span class="text-base font-normal">&#x1b83;&#x1ba4;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b; &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
         </a>
     </header>
     <p class="font-bold text-3xl mb-3">Konverter</p>
@@ -26,9 +26,9 @@
     <script src="/script/converter.js"></script>
     <script>
         $('#input').on('input', () => {
-            let text = $('#input').val();
+            let input = $('#input').val();
 
-            let output =  (''.match(/[\u1b80-\u1bbf]/i)) ? sundaneseToLatin(text) : latinToSundanese(text);
+            let output = (input.match(/[\u1b80-\u1bbf]/i)) ? sundaneseToLatin(input) : latinToSundanese(input);
             $('#output').html(output);
         });
     </script>
