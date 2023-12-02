@@ -130,12 +130,15 @@ let sundanese = {
  * parts of Sundanese character, generally like dividing
  * every syllable in the text.
  */
-const parser = /(([^aiueéo\s\d\W])([rly])?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo])|(\d+)|(\W+))((?<=[aiueéo])([rh]|ng)(?![aiueéo]))?/gi;
+const parser = {
+    latin: /(([^aiueéo\s\d\W])([rly])?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo])|(\d+)|(\W+))((?<=[aiueéo])([rh]|ng)(?![aiueéo]))?/gi,
+    sundanese: /([\u1b83-\u1b89]|[\u1b8a-\u1ba0\u1bae-\u1baf][\u1ba1-\u1ba3]?[\u1ba4-\u1ba9]?)/gi
+}
 
 function latinToSundanese(text) {
     text = text.toLowerCase();
     let result = '';
-    let parsed = text.matchAll(parser);
+    let parsed = text.matchAll(parser.latin);
     let aParsed;
     
     while (true) {
