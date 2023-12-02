@@ -18,8 +18,8 @@
         </a>
     </header>
     <p class="font-bold text-3xl mb-3">Konverter</p>
-    <p class="mb-4">Konversi teks beraksara Latin ke aksara Sunda dan sebaliknya.</p>
-    <textarea name="input" id="input" class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
+    <p class="mb-4">Konversi teks ber-aksara Latin ke aksara Sunda dan sebaliknya.</p>
+    <textarea name="input" id="input" placeholder="Ketik teks Latin atau teks aksara Sunda Anda di sini untuk mendapatkan hasil konversinya" class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
     <p id="output" class="w-full h-fit text-2xl"></p>
 
     <script src="/script/global.js"></script>
@@ -29,7 +29,7 @@
             let input = $('#input').val();
 
             let output = (input.match(/[\u1b80-\u1bbf]/i)) ? sundaneseToLatin(input) : latinToSundanese(input);
-            $('#output').html(output);
+            $('#output').text(output);
         });
     </script>
 </body>
