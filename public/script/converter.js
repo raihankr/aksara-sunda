@@ -132,7 +132,7 @@ let sundanese = {
  */
 const parser = {
     latin: /((ny|ng|kh|sy|[^aiueéo\s\d\W])([rly])?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo])|(\d+)|(\W+))((?<=[aiueéo])([rh]|ng)(?![aiueéo]))?/gi,
-    sundanese: /((([\u1b83-\u1b89])|([\u1b8a-\u1ba0\u1bae-\u1baf])([\u1ba1-\u1ba3]?)([\u1ba4-\u1ba9]?))([\u1b80-\u1b82]|(?<=[\u1b83-\u1ba0\u1bae-\u1baf])\u1baa)?|([\u1bb0-\u1bb9]+))|[\w\W]+/gi
+    sundanese: /((([\u1b83-\u1b89])|([\u1b8a-\u1ba0\u1bae-\u1baf])([\u1ba1-\u1ba3]?)([\u1ba4-\u1ba9]?))([\u1b80-\u1b82]|(?<=[\u1b83-\u1ba0\u1bae-\u1baf])\u1baa)?|([\u1bb0-\u1bb9]+))|[^\u1b80-\u1bbf]+/gi
 }
 
 function latinToSundanese(text) {
@@ -180,50 +180,38 @@ function latinToSundanese(text) {
     return result;
 }
 
-let getKey = (ref, cond) => Object.entries(ref).filter(cond)[0][0];
 function sundaneseToLatin(text) {
     let result = '';
-    let parsed = text.matchAll(text);
+    let parsed = text.matchAll(parser.sundanese);
     let aParsed;
+    let getKey = (ref, cond) => Object.entries(ref).filter(cond)[0][0];
 
     while (true) {
         aParsed = parsed.next();
         if (aParsed.done) break;
 
-        if (aParsed.value[1]) {
-            if (aParsed.value[2])
-                result += getKey(sundanese.aksara.swara, i => i[1] == aParsed.value[2]);
-            else if (aParsed.value[3])
-                result += getKey(sundanese.aksara.ngalagena, i => i[1] == aParsed.value[3]);
+        if (aParsed.value[2]) {
+            if (aParsed.value[3])
+                result += getKey(sundanese.aksara.swara, i => i[1] == aParsed.value[3]);
+            else if (aParsed.value[4])
+                result += getKey(sundanese.aksara.ngalagena, i => i[1] == aParsed.value[4]);
 
-            if (aParsed.value[4])
-                result += getKey(sundanese.rarangken.sisip, i => i[1].char == aParsed.value[4]);
             if (aParsed.value[5])
-                result += getKey(sundanese.rarangken.vokal, i => i[1].char == aParsed.value[5]);
-            else if (!aParsed.value[2])
+                result += getKey(sundanese.rarangken.sisip, i => i[1].char == aParsed.value[5]);
+            if (aParsed.value[6])
+                result += getKey(sundanese.rarangken.vokal, i => i[1].char == aParsed.value[6]);
+            else if (!aParsed.value[3])
                 result += 'a';
-            if (aParsed.value[6]) {
-                if (aParsed.value[6] == sundanese.rarangken.akhir['/'].char) {
+            if (aParsed.value[7]) {
+                if (aParsed.value[7] == sundanese.rarangken.akhir['/'].char) {
                     result = result.slice(0, -1);
-                    continue;
-                } else result += getKey(sundanese.rarangken.akhir, i => i[1].char == aParsed.value[6]);
+                } else result += getKey(sundanese.rarangken.akhir, i => i[1].char == aParsed.value[7]);
             }
-        } else if (aParsed.value[7]) {
-            for (digit of aParsed.value[7])
-                result += getKey(sundanese.angka, i => i[1] == aParsed.value[7]);
+        } else if (aParsed.value[8]) {
+            for (digit of aParsed.value[8])
+                result += sundanese.angka.indexOf(digit);
         } else result += aParsed.value[0];
     }
 
-
     return result;
 }
-
-console.log(process);
-if (process)
-    module.exports = {
-        sundanese,
-        parser,
-        latinToSundanese,
-        sundaneseToLatin,
-        getKey,
-    }
