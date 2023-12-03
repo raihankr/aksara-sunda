@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aksara Sunda - Konverter</title>
-    <meta name="description" content="Konverter Aksara Sunda. Ubah aksara Latin ke aksara Sunda atau aksara Sunda ke aksara Latin">
+    <meta name="description"
+        content="Konverter Aksara Sunda. Ubah aksara Latin ke aksara Sunda atau aksara Sunda ke aksara Latin">
     <link rel="shortcut icon" href="/image/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="/style/output.css">
     <link rel="stylesheet" href="/style/assets.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<body class="pt-24 px-4">
-    <header class="w-full h-20 py-3 bg-white border-b border-black text-center text-2xl fixed top-0 left-0">
+
+<body class="pt-24 px-4 mx-auto max-w-7xl">
+    <header class="w-full max-w-7xl h-20 left-1/2 -translate-x-1/2 py-3 bg-white border-b border-black text-center text-2xl fixed top-0">
         <a href="/" class="my-auto font-bold">
             Aksara Sunda <br>
-            <span class="text-base font-normal">&#x1b83;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b; &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
+            <span class="text-base font-normal">&#x1b83;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b;
+                &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
         </a>
     </header>
-    <p class="font-bold text-3xl mb-3">Konverter</p>
-    <p class="mb-4">Konversi teks ber-aksara Latin ke aksara Sunda dan sebaliknya.</p>
-    <textarea name="input" id="input" placeholder="Ketik teks Latin atau teks aksara Sunda Anda di sini untuk mendapatkan hasil konversinya" class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
-    <p id="output" class="w-full h-fit text-2xl whitespace-pre-line"></p>
+    <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 md:p-6">
+            <p class="font-bold text-3xl mb-3">Konverter</p>
+            <p class="mb-4">Konversi teks ber-aksara Latin ke aksara Sunda dan sebaliknya.</p>
+            <textarea name="input" id="input"
+                placeholder="Ketik teks Latin atau teks aksara Sunda Anda di sini untuk mendapatkan hasil konversinya"
+                class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
+        </div>
+        <div id="output-wrap" class="md:w-1/2 md:p-6">
+            <details class="md:hidden">
+                <summary class="font-bold text-3xl mb-2">Hasil</summary>
+            </details>
+            <p class="font-bold text-3xl mb-2 hidden md:block">Hasil</p>
+            <div>
+                <p id="mode" class="inline bg-teal-700 text-white p-1 rounded-md">Mode</p>
+                <p id="output" class="w-full h-fit mt-6 text-2xl whitespace-pre-line"><span
+                        class="text-base text-gray-500">Masukkan teks di kolom input di atas untuk mendapatkan hasil konversinya di sini.</span></p>
+            </div>
+        </div>
+    </div>
 
     <script src="/script/global.js"></script>
     <script src="/script/converter.js"></script>
     <script>
         $('#input').on('input', () => {
-            let input = $('#input').val();
+            let input = $('#input').val(),
+                mode = !input ? false : ((input.match(/[\u1b80-\u1bbf]/i)) ? 'latin' : 'sunda'),
+                output = mode == 'latin' ? sundaneseToLatin(input) : (mode == 'sunda' ? latinToSundanese(input) : 'Masukkan teks di kolom input di atas untuk mendapatkan hasil konversinya di sini.');
 
-            let output = (input.match(/[\u1b80-\u1bbf]/i)) ? 'Latin: ' + sundaneseToLatin(input) : 'Sunda: ' + latinToSundanese(input);
-            $('#output').text(output);
+            $('#mode').text(mode == 'latin' ? 'Sunda > Latin' : (mode == 'sunda' ? 'Latin > Sunda' : 'Mode'));
+            mode ? $('#output').text(output) : $('#output').html(`<span class="text-base text-gray-500">${output}</span>`);
         });
     </script>
 </body>
+
 </html>

@@ -131,7 +131,7 @@ let sundanese = {
  * every syllable in the text.
  */
 const parser = {
-    latin: /((ny|ng|kh|sy|[^aiueéo\s\d\W])([rly])?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo])|(\d+)|(\W+))((?<=[aiueéo])([rh]|ng)(?![aiueéo]))?/gi,
+    latin: /((ny|ng|kh|sy|[^aiueéo\s\d\W])([rly](?=[aiueéo]))?(eu|[aiueéo])?|(?<![b-df-hj-np-tv-z])(eu|[aiueéo])|(\d+)|(\W+))((?<=[aiueéo])([rh]|ng)(?![aiueéo]))?/gi,
     sundanese: /((([\u1b83-\u1b89])|([\u1b8a-\u1ba0\u1bae-\u1baf])([\u1ba1-\u1ba3]?)([\u1ba4-\u1ba9]?))([\u1b80-\u1b82]|(?<=[\u1b83-\u1ba0\u1bae-\u1baf])\u1baa)?|([\u1bb0-\u1bb9]+))|[^\u1b80-\u1bbf]+/gi
 }
 
