@@ -11,16 +11,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="pt-24 px-4">
-    <header class="w-full h-20 py-3 border-b border-black text-center text-2xl fixed top-0 left-0">
+    <header class="w-full h-20 py-3 bg-white border-b border-black text-center text-2xl fixed top-0 left-0">
         <a href="/" class="my-auto font-bold">
             Aksara Sunda <br>
-            <span class="text-base font-normal">&#x1b83;&#x1ba4;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b; &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
+            <span class="text-base font-normal">&#x1b83;&#x1b8a;&#x1baa;&#x1b9e;&#x1b9b; &#x1b9e;&#x1ba5;&#x1b94;&#x1baa;&#x1b93;</span>
         </a>
     </header>
     <p class="font-bold text-3xl mb-3">Konverter</p>
     <p class="mb-4">Konversi teks ber-aksara Latin ke aksara Sunda dan sebaliknya.</p>
     <textarea name="input" id="input" placeholder="Ketik teks Latin atau teks aksara Sunda Anda di sini untuk mendapatkan hasil konversinya" class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
-    <p id="output" class="w-full h-fit text-2xl"></p>
+    <p id="output" class="w-full h-fit text-2xl whitespace-pre-line"></p>
 
     <script src="/script/global.js"></script>
     <script src="/script/converter.js"></script>
@@ -28,7 +28,7 @@
         $('#input').on('input', () => {
             let input = $('#input').val();
 
-            let output = (input.match(/[\u1b80-\u1bbf]/i)) ? sundaneseToLatin(input) : latinToSundanese(input);
+            let output = (input.match(/[\u1b80-\u1bbf]/i)) ? 'Latin: ' + sundaneseToLatin(input) : 'Sunda: ' + latinToSundanese(input);
             $('#output').text(output);
         });
     </script>
