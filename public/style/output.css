@@ -538,32 +538,12 @@ video {
   position: fixed;
 }
 
-.top-0 {
-  top: 0px;
-}
-
-.top-20 {
-  top: 5rem;
-}
-
 .left-0 {
   left: 0px;
 }
 
-.top-96 {
-  top: 24rem;
-}
-
-.top-32 {
-  top: 8rem;
-}
-
-.-m-2 {
-  margin: -0.5rem;
-}
-
-.m-2 {
-  margin: 0.5rem;
+.top-0 {
+  top: 0px;
 }
 
 .my-auto {
@@ -579,33 +559,13 @@ video {
   margin-bottom: 1rem;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
 .h-20 {
   height: 5rem;
-}
-
-.h-32 {
-  height: 8rem;
 }
 
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.min-h-\[20\] {
-  min-height: 20;
-}
-
-.min-h-\[20rem\] {
-  min-height: 20rem;
-}
-
-.min-h-\[5rem\] {
-  min-height: 5rem;
 }
 
 .min-h-\[6rem\] {
@@ -616,16 +576,12 @@ video {
   width: 100%;
 }
 
-.resize-none {
-  resize: none;
+.whitespace-pre-line {
+  white-space: pre-line;
 }
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.border {
-  border-width: 1px;
 }
 
 .border-b {
@@ -637,32 +593,18 @@ video {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.p-2 {
-  padding: 0.5rem;
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-4 {
   padding: 1rem;
-}
-
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 
 .px-4 {
@@ -670,12 +612,9 @@ video {
   padding-right: 1rem;
 }
 
-.pt-3 {
+.py-3 {
   padding-top: 0.75rem;
-}
-
-.pt-20 {
-  padding-top: 5rem;
+  padding-bottom: 0.75rem;
 }
 
 .pt-24 {
@@ -691,29 +630,14 @@ video {
   line-height: 2rem;
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.text-9xl {
-  font-size: 8rem;
-  line-height: 1;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-bold {
@@ -724,10 +648,6 @@ video {
   font-weight: 400;
 }
 
-.leading-tight {
-  line-height: 1.25;
-}
-
-.leading-none {
-  line-height: 1;
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
