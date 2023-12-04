@@ -30,7 +30,7 @@
                 class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
         </div>
         <div id="output-wrap" class="md:w-1/2 md:p-6">
-            <button onclick="resultToggle()" class="font-bold text-3xl mb-2 md:hidden">Hasil<span class="ml-3 inline-block w-0 h-0 border-l-black border-l-[20px] border-y-transparent border-y-[10px] "></span></button>
+            <button onclick="resultToggle()" class="font-bold text-3xl mb-2 md:hidden">Hasil<span class="ml-3 inline-block w-0 h-0 transition-[rotate] border-l-black border-l-[20px] border-y-transparent border-y-[10px] "></span></button>
             <p class="font-bold text-3xl mb-2 hidden md:block">Hasil</p>
             <div class="hidden md:block">
                 <p id="mode" class="inline bg-teal-700 text-white p-1 rounded-md">Mode</p>
@@ -39,19 +39,64 @@
             </div>
         </div>
     </div>
+    <hr class="border-t-2 border-gray-400 mt-5">
+    <div id="keyboard" class="flex flex-col md:flex-row">
+        <div id="key-1" class="flex flex-col md:w-1/2 md:p-6">
+
+        </div>
+        <div id="key-2" class="flex flex-col md:w-1/2 md:p-6">
+
+        </div>
+    </div>
 
     <script src="/script/global.js"></script>
     <script src="/script/converter.js"></script>
     <script>
+        function createRow() {
+            let row = document.createElement('div');
+            $(row).addClass('w-full flex flex-row justify-between');
+            return row;
+        }
+
+        function createKey(val, callback) {
+            let btn = document.createElement('button');
+            $(btn).text(val);
+            $(btn).addClass('flex-1 max-w-[5rem] active:scale-[90%] bg-gray-400 m-2 text-lg h-[3rem] rounded-lg');
+            $(btn).on('click', callback || function () {
+                $('#input').val($('#input').val() + val);
+                $('#input').trigger('input');
+            });
+            return btn;
+        }
+
+        $('#key-1').append(createRow());
+        $('#key-1>div')[0].append(createKey('é'));
+        for (let i = 3; i < 10; i++)
+            $('#key-1>div')[0].append(createKey(String.fromCharCode(0x1b80 + i)))
+        for (let i = 0x8a, row = 8, ri = 1; i < 0xa1; i++, row--) {
+            if (row == 0) row = 8, ri++;
+            if (row == 8) $('#key-1')[0].append(createRow());
+            $('#key-1>div')[ri].append(createKey(String.fromCharCode(0x1b00 + i)))
+        }
+        $('#key-1').append(createRow());
+        $('#key-1>div')[4].append(createKey('\u1bae'));
+        $('#key-1>div')[4].append(createKey('\u1baf'));
+        $('#key-1>div')[4].append(createKey('\u232b', () => {
+            $('#input').val($('#input').val().slice(0, -1));
+            $('#input').trigger('input');
+        }));
+        
         let resultOpen = window.innerWidth >= 768 ? true : false;
         function resultToggle() {
             $('#output-wrap>div').slideToggle();
             resultOpen = !resultOpen;
-            if (resultOpen) $("#output-wrap>button>span").css.rotate = '90deg';
-            else $('#output-wrap>button>span').css.rotate = '0';
+            if (resultOpen) $("#output-wrap>button>span").css('rotate', '90deg');
+            else $('#output-wrap>button>span').css('rotate', '0deg');
         }
 
         $('#input').on('input', () => {
+            if (!resultOpen) resultToggle();
+
             let input = $('#input').val(),
                 mode = !input ? false : ((input.match(/[\u1b80-\u1bbf]/i)) ? 'latin' : 'sunda'),
                 output = mode == 'latin' ? sundaneseToLatin(input) : (mode == 'sunda' ? latinToSundanese(input) : 'Masukkan teks di kolom input di atas untuk mendapatkan hasil konversinya di sini.');
