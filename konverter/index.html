@@ -30,13 +30,11 @@
                 class="mb-4 w-full min-h-[6rem] p-4 bg-gray-200 rounded-xl"></textarea>
         </div>
         <div id="output-wrap" class="md:w-1/2 md:p-6">
-            <details class="md:hidden">
-                <summary class="font-bold text-3xl mb-2">Hasil</summary>
-            </details>
+            <button onclick="resultToggle()" class="font-bold text-3xl mb-2 md:hidden">Hasil<span class="ml-3 inline-block w-0 h-0 border-l-black border-l-[20px] border-y-transparent border-y-[10px] "></span></button>
             <p class="font-bold text-3xl mb-2 hidden md:block">Hasil</p>
-            <div>
+            <div class="hidden md:block">
                 <p id="mode" class="inline bg-teal-700 text-white p-1 rounded-md">Mode</p>
-                <p id="output" class="w-full h-fit mt-6 text-2xl whitespace-pre-line"><span
+                <p id="output" class="w-full h-fit mt-6 text-2xl md:text-4xl !leading-relaxed whitespace-pre-line"><span
                         class="text-base text-gray-500">Masukkan teks di kolom input di atas untuk mendapatkan hasil konversinya di sini.</span></p>
             </div>
         </div>
@@ -45,6 +43,14 @@
     <script src="/script/global.js"></script>
     <script src="/script/converter.js"></script>
     <script>
+        let resultOpen = window.innerWidth >= 768 ? true : false;
+        function resultToggle() {
+            $('#output-wrap>div').slideToggle();
+            resultOpen = !resultOpen;
+            if (resultOpen) $("#output-wrap>button>span").css.rotate = '90deg';
+            else $('#output-wrap>button>span').css.rotate = '0';
+        }
+
         $('#input').on('input', () => {
             let input = $('#input').val(),
                 mode = !input ? false : ((input.match(/[\u1b80-\u1bbf]/i)) ? 'latin' : 'sunda'),
