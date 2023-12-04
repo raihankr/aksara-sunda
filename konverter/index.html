@@ -75,16 +75,32 @@
             $('#key-1>div')[0].append(createKey(String.fromCharCode(0x1b80 + i)))
         for (let i = 0x8a, row = 8, ri = 1; i < 0xa1; i++, row--) {
             if (row == 0) row = 8, ri++;
-            if (row == 8) $('#key-1')[0].append(createRow());
+            if (row == 8) $('#key-1').append(createRow());
             $('#key-1>div')[ri].append(createKey(String.fromCharCode(0x1b00 + i)))
         }
         $('#key-1').append(createRow());
         $('#key-1>div')[4].append(createKey('\u1bae'));
         $('#key-1>div')[4].append(createKey('\u1baf'));
-        $('#key-1>div')[4].append(createKey('\u232b', () => {
+        let delBtn;
+        $('#key-1>div')[4].append(delBtn = createKey('\u232b', () => {
             $('#input').val($('#input').val().slice(0, -1));
             $('#input').trigger('input');
         }));
+
+        $('#key-2').append(createRow());
+        for (let i = 0xb0, row = 8, ri = 0; i < 0xba; i++, row--) {
+            if (row == 0) row = 8, ri++;
+            if (row == 8) $('#key-2').append(createRow());
+            $('#key-2>div')[ri].append(createKey(String.fromCharCode(0x1b00 + i)));
+        }
+        for (let i of [0x1b81, 0x1b82, 0x1b80])
+            $('#key-2>div')[1].append(createKey(String.fromCharCode(i)));
+        for (let i = 0xa1, row = 6, ri = 2; i < 0xab; i++, row--) {
+            if (row == 0) ri++;
+            if (row == 5) $('#key-2').append(createRow());
+            $('#key-2>div')[ri].append(createKey(String.fromCharCode(0x1b00 + i)));
+        }
+        $('#key-2>div')[3].append(createKey('|'), delBtn)
         
         let resultOpen = window.innerWidth >= 768 ? true : false;
         function resultToggle() {
