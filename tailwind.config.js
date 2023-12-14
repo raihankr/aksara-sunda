@@ -5,7 +5,7 @@ module.exports = {
     fontFamily: {
       sans: ['Product Sans', '"Noto Sans Sundanese"']  
     },
-    extend: {},
+    extend: {}
   },
   plugins: [],
 }

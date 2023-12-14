@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aksara Sunda</title>
+    <title>Aksara Sunda - Beranda</title>
     <link rel="stylesheet" href="/style/output.css">
     <link rel="stylesheet" href="/style/assets.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <script src="/script/global.js"></script>
+    <header class="font-bold text-5xl text-center flex flex-col justify-center h-screen">
+        <p>Aksara Sunda</p>
+        <p>ᮃᮊ᮪ᮞᮛ ᮞᮥᮔ᮪ᮓ</p>
+    </header>
+
+    <script>
+        $.get('component/footer.html', data => $(document.body).append(data));
+    </script>
 </body>
 </html>
