@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-    * {
+    body {
         -webkit-tap-highlight-color: transparent;
+        @apply mx-auto max-w-7xl;
     }
 }
 
