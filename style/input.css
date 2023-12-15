@@ -9,8 +9,24 @@
     }
 }
 
-@layer component {
+@layer components {
     nav>* {
-        @apply font-bold text-4xl transition-all hover:bg-black hover:!text-white rounded-lg p-2 cursor-pointer;
+        @apply font-bold text-4xl transition-all hover:bg-black hover:text-white rounded-lg p-2 cursor-pointer;
+    }
+
+    .card {
+        @apply bg-gray-100 shadow-md hover:shadow-xl transition-shadow rounded-xl flex flex-[100%] md:flex-[calc(50%-1rem)] h-32 overflow-hidden;
+    }
+
+    .card>img {
+        @apply aspect-square h-full object-cover;
+    }
+
+    .card>section {
+        @apply p-4;
+    }
+    
+    .card h3 {
+        @apply font-bold text-lg;
     }
 }
