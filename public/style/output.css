@@ -649,6 +649,10 @@ nav>*:hover {
   margin: 0.5rem;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .my-24 {
   margin-top: 6rem;
   margin-bottom: 6rem;

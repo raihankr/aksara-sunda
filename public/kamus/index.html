@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksara Sunda - Kamus</title>
+    <link rel="stylesheet" href="../style/output.css">
+    <link rel="stylesheet" href="../style/assets.css">
+    <link rel="shortcut icon" href="../image/logo.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <p class="font-bold text-3xl m-4">Dalam pengerjaan, kembali lagi nanti :)</p>
+
+    <script>
+        $.get('../component/header.html', data => $(document.body).prepend(data));
+        $.get('../component/footer.html', data => $(document.body).append(data));
+    </script>
+</body>
+</html>
