@@ -29,4 +29,8 @@
     .card h3 {
         @apply font-bold text-lg;
     }
+
+    .card p {
+        @apply text-sm md:text-base;
+    }
 }
